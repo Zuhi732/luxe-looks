@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - Luxe Looks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .nav-link {
+        position: relative;
+        padding-bottom: 4px;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #f59e0b;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease-out;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        transform: scaleX(1);
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <header class="bg-black/70 backdrop-blur-md sticky top-0 z-50">
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="index.html" class="text-3xl font-bold text-amber-400"
+          >Luxe Looks</a
+        >
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="nav-link hover:text-amber-400 transition"
+            >Home</a
+          >
+          <a
+            href="services.html"
+            class="nav-link hover:text-amber-400 transition"
+            >Services</a
+          >
+          <a
+            href="gallery.html"
+            class="nav-link active text-amber-400 font-bold"
+            >Gallery</a
+          >
+          <a
+            href="contact.html"
+            class="bg-amber-400 text-black font-semibold px-5 py-2 rounded-md hover:bg-amber-300 transition"
+            >Book Appointment</a
+          >
+        </div>
+        <button id="menu-btn" class="md:hidden text-2xl text-amber-400">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden">
+        <a href="index.html" class="block text-center py-3 hover:bg-gray-800"
+          >Home</a
+        ><a
+          href="services.html"
+          class="block text-center py-3 hover:bg-gray-800"
+          >Services</a
+        ><a href="gallery.html" class="block text-center py-3 hover:bg-gray-800"
+          >Gallery</a
+        ><a href="contact.html" class="block text-center py-3 hover:bg-gray-800"
+          >Book Appointment</a
+        >
+      </div>
+    </header>
+
+    <main class="py-20">
+      <section class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+          <h1 class="text-5xl md:text-6xl font-bold">
+            Our <span class="text-amber-400">Creations</span>
+          </h1>
+          <p class="mt-4 text-lg text-gray-400">
+            A glimpse into our world of beauty.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="reveal">
+            <img
+              src="image/hair.png"
+              alt="Hair style"
+              class="rounded-lg shadow-lg hover:opacity-80 transition"
+            />
+          </div>
+          <div class="reveal">
+            <img
+              src="image/Nails Art.png"
+              alt="Nail art"
+              class="rounded-lg shadow-lg hover:opacity-80 transition"
+            />
+          </div>
+          <div class="reveal">
+            <img
+              src="image/facial.png"
+              alt="Facial treatment"
+              class="rounded-lg shadow-lg hover:opacity-80 transition"
+            />
+          </div>
+          <div class="reveal">
+            <img
+              src="image/makeup.png"
+              alt="Makeup"
+              class="rounded-lg shadow-lg hover:opacity-80 transition"
+            />
+          </div>
+          <div class="reveal">
+            <img
+              src="image/licensed-image.jpeg"
+              alt="Salon interior"
+              class="rounded-lg shadow-lg hover:opacity-80 transition"
+            />
+          </div>
+          <div class="reveal">
+            <img
+              src="image/bridal.png"
+              alt="Bridal makeup"
+              class="rounded-lg shadow-lg hover:opacity-80 transition"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-black py-8 border-t border-gray-800">
+      <div class="container mx-auto text-center text-gray-500">
+        <p>&copy; 2025 Luxe Looks. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuBtn.addEventListener("click", () =>
+        mobileMenu.classList.toggle("hidden")
+      );
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("active");
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
